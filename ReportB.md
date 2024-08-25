@@ -166,4 +166,4 @@ if(state == 1 && input_x[0] == 'A') {
 [プログラミング言語処理](https://www.hpcs.cs.tsukuba.ac.jp/~msato/lecture-note/comp2004/note4.html) 2024年8月25日参照
 [Reading 18: Parser Generators](https://ocw.mit.edu/ans7870/6/6.005/s16/classes/18-parser-generators/) 2024年8月25日参照
 [Parser Generator - an overview | ScienceDirect Topics](https://www.sciencedirect.com/topics/computer-science/parser-generator) 2024年8月25日参照
-
+『コンパイラ [第2版] ー原理・技法・ツールー』A.V.エイホ、M.S.ラム、R.セシィ、J.D.ウルマン著、原田賢一訳、サイエンス社、2009、pp.260-277
