@@ -368,12 +368,14 @@ code {
 <h1 id="b-lr%E3%83%91%E3%83%BC%E3%82%B6%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%81%AE%E5%AE%9F%E8%A3%85">B. LRパーザジェネレータの実装</h1>
 <h2 id="%E5%A4%A7%E5%A0%80%E5%85%88%E7%94%9F%E3%81%AE%E8%A7%A3%E8%AA%AC%E8%A8%98%E4%BA%8B%E3%81%AE%E6%A6%82%E8%A6%81">大堀先生の<a href="https://doi.org/10.11309/jssst.31.1_30">解説記事</a>の概要</h2>
 <h3 id="%E6%96%87%E8%84%88%E8%87%AA%E7%94%B1%E6%96%87%E6%B3%95%E3%81%A8%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90%E3%81%AE%E7%9B%AE%E7%9A%84">文脈自由文法と構文解析の目的</h3>
-<p>この課題で行う構文解析の対象は、以下で定義されるような文法$<code>G</code>$で定義された言語である。
-$$ G = (N, T, P, S) $$
-ここで、$<code>N</code>$は非終端記号の集合、$<code>T</code>$は終端記号の集合、$<code>P</code>$は生成規則の集合、$<code>S</code>$は開始記号である。</p>
-<p>この文法$G$を用いて定義される言語を$L(G)$とすれば、これは以下のように表せる。
-$$ L(G) = { w | S \xRightarrow{<em>}w } $$
-ただし、$S\xRightarrow{</em>}w$は、$S$に対して生成規則を0回以上適用すると$w$が得られることを意味する。</p>
+<p>この課題で行う構文解析の対象は、以下で定義されるような文法$<code>G</code>$で定義された言語である。</p>
+<pre class="hljs"><code><div>G = (N, T, P, S)
+</div></code></pre>
+<p>ここで、$<code>N</code>$は非終端記号の集合、$<code>T</code>$は終端記号の集合、$<code>P</code>$は生成規則の集合、$<code>S</code>$は開始記号である。</p>
+<p>この文法$G$を用いて定義される言語を$L(G)$とすれば、これは以下のように表せる。</p>
+<pre class="hljs"><code><div>L(G) = \{ w | S \xRightarrow{*}w \}
+</div></code></pre>
+<p>ただし、$S\xRightarrow{*}w$は、$S$に対して生成規則を0回以上適用すると$w$が得られることを意味する。</p>
 <p>非終端記号と終端記号が混ざった記号列$\alpha_i$に対して、生成規則をちょうど1回適用すると$\alpha_{i+1}$が得られることを$\alpha_i \Rightarrow \alpha_{i+1}$と表せば、$S\xRightarrow{*}w$は以下のように表せる。
 $$ S \Rightarrow \alpha_1 \Rightarrow \alpha_2 \Rightarrow \cdots  \Rightarrow \alpha_n \Rightarrow w　　\qquad \cdots (1) $$</p>
 <p>構文解析の目的は、$w$が与えられたときに、(1)のような記号列の書き換えの系列を求めることである。(1)が求まれば、開始記号にどの生成規則をどの順番で適用したかが明らかになり、これは$w$の文法構造が明らかになることを意味する。</p>
