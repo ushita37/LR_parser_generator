@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ReportB.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="b-lr%E3%83%91%E3%83%BC%E3%82%B6%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%81%AE%E5%AE%9F%E8%A3%85">B. LRパーザジェネレータの実装</h1>
+<h2 id="%E5%A4%A7%E5%A0%80%E5%85%88%E7%94%9F%E3%81%AE%E8%A7%A3%E8%AA%AC%E8%A8%98%E4%BA%8B%E3%81%AE%E6%A6%82%E8%A6%81">大堀先生の<a href="https://doi.org/10.11309/jssst.31.1_30">解説記事</a>の概要</h2>
+<h3 id="%E6%96%87%E8%84%88%E8%87%AA%E7%94%B1%E6%96%87%E6%B3%95%E3%81%A8%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90%E3%81%AE%E7%9B%AE%E7%9A%84">文脈自由文法と構文解析の目的</h3>
+<p>この課題で行う構文解析の対象は、以下で定義されるような文法$ G $で定義された言語である。
+$$ G = (N, T, P, S) $$
+ここで、$N$は非終端記号の集合、$T$は終端記号の集合、$P$は生成規則の集合、$S$は開始記号である。</p>
+<p>この文法$G$を用いて定義される言語を$L(G)$とすれば、これは以下のように表せる。
+$$ L(G) = { w | S \xRightarrow{<em>}w } $$
+ただし、$S\xRightarrow{</em>}w$は、$S$に対して生成規則を0回以上適用すると$w$が得られることを意味する。</p>
+<p>非終端記号と終端記号が混ざった記号列$\alpha_i$に対して、生成規則をちょうど1回適用すると$\alpha_{i+1}$が得られることを$\alpha_i \Rightarrow \alpha_{i+1}$と表せば、$S\xRightarrow{*}w$は以下のように表せる。
+$$ S \Rightarrow \alpha_1 \Rightarrow \alpha_2 \Rightarrow \cdots  \Rightarrow \alpha_n \Rightarrow w　　\qquad \cdots (1) $$</p>
+<p>構文解析の目的は、$w$が与えられたときに、(1)のような記号列の書き換えの系列を求めることである。(1)が求まれば、開始記号にどの生成規則をどの順番で適用したかが明らかになり、これは$w$の文法構造が明らかになることを意味する。</p>
+<h3 id="%E6%9C%80%E5%8F%B3%E5%B0%8E%E5%87%BA">最右導出</h3>
+<p>(1)に現れる$\alpha_i (1 \leq i \leq n)$および$w$を展開することを考える。そのために、3つの記号を定義する。</p>
+<p>$A_j$は$w$を$S$に還元するとき、$j$番目のステップで得られた非終端記号とする。(還元が導出の逆順になっていることに注意、すなわち先ほどの$i$に対し$j = n+1-i$である)</p>
+<p>$\beta_j$は終端記号と非終端記号が混在した記号列(ただし$\beta_1$は終端記号のみからなる文字列)とする。$w_j$は終端記号のみからなる文字列とする。</p>
+<p>このとき、(1)は
+$$
+\begin{aligned}
+S &amp;\Rightarrow \beta_n A_n w_n  (= \alpha_1)\
+&amp;\Rightarrow \beta_{n-1} A_{n-1} w_{n-1}w_n (= \alpha_2)\
+&amp;\vdots \
+&amp;\Rightarrow \beta_1 A_1 w_2 \cdots w_n (= \alpha_n)\
+&amp;\Rightarrow w_1 w_2 \cdots w_n (= w)
+\end{aligned}
+$$
+と書き直すことができる。</p>
+<p>$w_j$が終端記号であることに注意すると、導出の各過程において記号列に含まれる非終端記号のうち最も右の非終端記号$A_j$が置き換えられていることがわかる。このような導出を特に最右導出といい、記号 $\xRightarrow[rm]{}$ で表す。また、最右導出を0回以上行うことを $\xRightarrow[rm]{*}$で表す。</p>
+<h3 id="lr%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90%E3%81%AE%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86">LR構文解析の基本原理</h3>
+<p>ある文脈自由文法$G$によって定まる記号列の集合
+$$ C_G = { \alpha \beta | S \xRightarrow[rm]{*} \alpha A w \xRightarrow[rm]{} \alpha \beta w} $$
+を考える。このとき、次の<strong>LR構文解析の基本原理</strong>が成り立つ。
+$$ C_Gは正規言語である。$$
+正規言語とは、正規表現で記述できる言語であり、非決定性有限オートマトン(NFA)または決定性有限オートマトン(DFA)で受理できる。これは、$G$が与えられたら、$C_G$を受理するNFAの$N_G$やDFAの$D_G$を構成できることを意味する。$N_G$は、サブセット構成と呼ばれる手続きにより$D_G$に変換できることが知られている。そのため、この基本原理を証明するには、$N_G$が受理する言語$L(N_G)$が$C_G$に等しいこと、すなわち$L(N_G) \subseteq C_G$かつ$C_G \subseteq L(N_G)$であることを示せば良い。</p>
+<h3 id="%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3%E3%81%A8action%E8%A1%A8">オートマトンとACTION表</h3>
+<p><a href="https://doi.org/10.11309/jssst.31.1_30">解説記事</a>の第4節では、基本原理の証明の過程で$N_G$の構成方法が与えられている。$N_G$は状態の有限集合$Q$, 入力記号の集合$\Sigma$、状態遷移関数$\delta$、初期状態$s$、受理状態を表すQの部分集合$F$からなる。$Q$の各状態は、$G$の生成規則に、パーザが入力記号列において読み込んだ位置を示す$\cdot$を導入したもの、あるいは初期状態である。形式的に表すと、
+$$
+Q = {s} \cup { [A\rightarrow \alpha \cdot \beta] | A \rightarrow \alpha \beta \in P }
+$$
+となる。さらに、文字列終了を表す記号$ を導入すると、<a href="https://doi.org/10.11309/jssst.31.1_30">解説記事</a>の第5節にあるような決定性オートマトン$D_G$が得られる。</p>
+<p>得られたオートマトン$D_G$の状態遷移関数をもとに、ACTION表を作成することができる。ACTION表の各エントリには、以下の4つの動作のいずれかが記述される。このACTION表は、文法$G$のパーザの動作を表現している。</p>
+<ul>
+<li>shift(q) : $D_G$の 状態を記録するスタックに$q$をプッシュし、入力記号を1文字読み進める。</li>
+<li>reduce($A \rightarrow \beta$) : スタックを$|\beta| - 1$文字ポップし、記号列をAに還元する。</li>
+<li>accept : 構文解析が成功したことを通知し、終了する。</li>
+<li>error : 構文エラーを通知し、終了する。</li>
+</ul>
+<p>LR(0)文法$G$で定められるDFAの各状態$q$は、「もし還元項を含むなら、その状態はその還元項1つのみからなる」という性質を満たすので、ACTION表の1つのエントリにはシフトと還元の両方の動作が記述されることはない。yaccのようなパーザジェネレータを用いてパーザを生成するときにshift/reduce conflictやreduce/reduce conflictが発生することがあるが、これは1つのエントリにshiftとreduceが両方記載されている、あるいはreduceが2つ以上記載されていることを表している。このようなconflictが発生するとき、パーザジェネレータに入力した文法はLR(0)文法ではない。</p>
+<h2 id="%E8%A7%A3%E8%AA%AC%E8%A8%98%E4%BA%8B%E3%81%A8%E5%AE%9F%E8%A3%85%E3%81%A8%E3%81%AE%E5%AF%BE%E5%BF%9C">解説記事と実装との対応</h2>
+<p>※ 風邪をひいてしまい、パーザジェネレータを構成するC++ファイルのうち、backend.cppとcodegenerator.cppの実装はできませんでした。そのため、以下で述べるバックエンドとコード生成の部分に関しては、実装の大まかな方針を示します。</p>
+<h3 id="%E4%BD%9C%E6%88%90%E3%81%97%E3%81%9F%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%81%AE%E6%A6%82%E8%A6%81">作成したプログラムの概要</h3>
+<p>パーザジェネレータは、文法を記述したファイルを入力として受け取り、LR(0)パーザのソースコードを出力する。パーザジェネレータは、大きく分けて以下の3つの部分からなる。</p>
+<ul>
+<li>フロントエンド : 入力された文法をパーザジェネレータ内部のデータ構造で表現する</li>
+<li>バックエンド : パーザジェネレータ内部のデータ構造で表現されたデータ構造から、構文解析表(ACTION表とGOTO表)を作成する</li>
+<li>コード生成 : 作成した構文解析表から、パーザのソースコードを(ターゲット言語、すなわちパーザの実装言語で)出力する</li>
+</ul>
+<p>入力される文法が言語G(実際にはBNFやPEG)で書かれ、出力されるパーザのソースコードが言語P(実際にはC言語やPython)で書かれるとすれば、パーザジェネレータは言語Gから言語Pへのコンパイラである、とみなすことができる。</p>
+<p>この課題ではパーザジェネレータをC++で実装することを試みているが、パーザジェネレータの実装言語と入力する文法を表現する言語、出力するパーザのソースコードの言語が同一である必要はない。</p>
+<!--
+
+* 論文中の説明（形式化）と実装との対応を具体的に説明
+
+-->
+<p>パーザジェネレータは、以下の5つのファイルからなる。</p>
+<ul>
+<li>main.cpp プログラム全体を実行するmain関数が記述されたファイル</li>
+<li>frontend.cpp パーザジェネレータに入力されたテキストファイルを読み込んで、プログラム内部のデータ構造に変換する処理が記述されたファイル</li>
+<li>backend.cpp プログラム内部のデータ構造で表現された文法をもとに、ACTION表を作成する処理が記述されたファイル (8/25時点で未実装)</li>
+<li>codegenerator.cpp バックエンドで作成したACTION表をもとに、パーザのソースコードを出力する処理が記述されたファイル (8/25時点で未実装)</li>
+<li>variable.h 複数の.cppファイルで使われるグローバル変数を宣言したファイル</li>
+</ul>
+<p>また、パーザジェネレータに入力する文法を記述したファイルとして、sample1.inputを用意している。これはテキストファイルであり、yacc文法ファイルに似た形式で書かれている。</p>
+<h3 id="%E8%A7%A3%E8%AA%AC%E8%A8%98%E4%BA%8B%E3%81%A8%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89%E3%81%AE%E5%AF%BE%E5%BF%9C">解説記事とフロントエンドの対応</h3>
+<p>解説記事では、文法を$G = (N, T, P, S)$で定めている。この表記は、非終端記号の集合$N$、終端記号の集合$T$、生成規則の集合$P$、開始記号$S$の区別を明確にしている。</p>
+<p>一方、入力するファイルsample1.inputでは、これら4つをセクションごとに分けて明示していない。この入力ファイルは、以下のような構成を持つ。</p>
+<ul>
+<li>セクション1 (1st section) : 非終端記号とトークン(字句解析を済ませた後の終端記号)を宣言</li>
+<li>セクション2 (2nd section) : 生成規則を記述</li>
+<li>セクション3 (3rd section) : サブルーチンを記述</li>
+</ul>
+<p>このsample1.inputでは、解説記事の第3節の例にある文法$G_{PAREN}$を実装している。
+$$
+\begin{aligned}
+G_{PAREN} &amp;= ({ S, A }, { &lt;, &gt; }, P, S)\
+P &amp;= { S \rightarrow AA, A\rightarrow &lt;&gt;, A\rightarrow<A> }
+\end{aligned}
+$$</p>
+<p>非終端記号の集合$N$は、セクション1で<code>%nset</code>の後にスペース区切りで記述している。</p>
+<pre class="hljs"><code><div>%nset S A
+</div></code></pre>
+<p>終端記号の集合$T$は、文字リテラルおよびトークンからなるものとする。文字リテラルはシングルクォーテーションで囲まれた文字であり、トークンは(ここでは)字句解析を通過した後の字句とする。</p>
+<p>トークンは、もし存在するならば<code>%token</code>の後に記述されるが、$G_{PAREN}$では終端記号が<code>&lt;</code> <code>&gt;</code>の2つだけなので、今回は実装を見送った。</p>
+<p>文字リテラルの終端記号<code>&lt;</code>および<code>&gt;</code>は、セクション2で生成規則の中に現れている。文字リテラルはそれぞれの生成規則から容易に読み取れるので、セクション1で明示的に書く必要はない。</p>
+<p>生成規則の集合$P$はセクション2で記述されている。</p>
+<pre class="hljs"><code><div>S: A A
+A: '&lt;' '&gt;'
+A: '&lt;' A '&gt;'
+</div></code></pre>
+<p>それぞれの生成規則について、<code>:</code>の左側(左辺)には非終端記号が記述され、<code>:</code>の右側(右辺)には左辺から導出される記号列が書かれている。最初の生成規則の左辺は開始記号$S$とみなされるので、左辺に開始記号を持たない規則は2番目以降に書かなければならない。</p>
+<p>上記のsample1.inputを処理するフロントエンドのプログラムfrontend.cppは、非終端記号を<code>std::vector &lt;std::string&gt; non_terminal_vec</code>に格納する。また、生成規則を読み取る中で得られた開始記号を<code>std::string starting_symbol</code>に格納する。非終端記号は、パーザジェネレータ内部では<code>std::string</code>として扱われる。</p>
+<p>終端記号は、トークンを含む場合はそのトークンをパーザジェネレータ内部で保持しなければならない。しかし、今回扱う$G_{PAREN}$にはトークンがなく文字リテラルのみであるから、非終端記号と異なり明示的には管理していない。</p>
+<p>生成規則は、<code>std::map &lt;std::string, std::vector&lt;std::vector&lt;std::string&gt;&gt;&gt; production_rule_map</code>という、左辺の非終端記号をキー、右辺の生成される記号列を値とする連想配列に格納する。ここで、<code>std::vector&lt;std::string&gt;&gt;</code>は生成規則1行分に相当する右辺の記号列である。$G_{PAREN}$では非終端記号$A$から$&lt; &gt;$と$<A>$が導出されるので、</p>
+<pre class="hljs"><code><div>production_rule_map[<span class="hljs-string">"A"</span>][<span class="hljs-number">0</span>] = (<span class="hljs-string">"'&lt;'"</span>, <span class="hljs-string">"'&gt;'"</span>);
+production_rule_map[<span class="hljs-string">"A"</span>][<span class="hljs-number">1</span>] = (<span class="hljs-string">"'&lt;'"</span>, <span class="hljs-string">"A"</span>, <span class="hljs-string">"'&gt;'"</span>);
+</div></code></pre>
+<p>となる。</p>
+<h3 id="%E3%83%90%E3%83%83%E3%82%AF%E3%82%A8%E3%83%B3%E3%83%89%E3%81%8A%E3%82%88%E3%81%B3%E3%82%B3%E3%83%BC%E3%83%89%E7%94%9F%E6%88%90%E9%83%A8825%E6%99%82%E7%82%B9%E3%81%A7%E6%9C%AA%E5%AE%9F%E8%A3%85%E3%81%AE%E5%AE%9F%E8%A3%85%E3%81%AE%E6%96%B9%E9%87%9D">バックエンドおよびコード生成部(8/25時点で未実装)の実装の方針</h3>
+<p>解説記事では、オートマトンを作ってから構文解析表(ACTION表)を作っている。
+バックエンドの実装にあたっては、</p>
+<ul>
+<li>読み取った生成規則に、パーザが読み込んだ位置を示す記号$\cdot$および文字列終了を表す記号$を導入して、状態の集合と状態遷移関数を作成する (これによりオートマトンができる)</li>
+<li>オートマトンからACTION表を作成する</li>
+</ul>
+<p>ことが必要となる。各々の状態は、生成規則と同様に<code>std::vector&lt;std::string&gt;&gt;</code>で表現し、その集合は<code>std::vector&lt;std::vector&lt;std::string&gt;&gt;&gt;</code>で表現できる、と考えられる。ACTION表の各エントリは、動作を表す1文字(shiftのs, reduceのr, acceptのa, errorのe)と、状態もしくは生成規則を表す番号のペア<code>std::pair&lt;char, int&gt;</code>とすればよい。</p>
+<p>コード生成部の実装にあたっては、</p>
+<ul>
+<li>パーザのソースコードにスタックを導入する</li>
+<li>ACTION表に記述された動作を行うソースコードの出力を作る</li>
+</ul>
+<p>ことが必要となる。スタックには、状態を表す番号を格納する。パーザのソースコードがC++で書かれるとすれば、<code>std::stack state_stack;</code>といった文字列を出力するコードをパーザジェネレータ内に書かなければならない。また、ACTION表に記述された動作をパーザのソースコードで実装するには、条件分岐を用いれば良い。例えば、状態1で記号Aを読んだら入力を1文字読み進め、状態4に遷移するというshift(4)に対応したソースコードとしては、</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span>(state == <span class="hljs-number">1</span> &amp;&amp; input_x[<span class="hljs-number">0</span>] == <span class="hljs-string">'A'</span>) {
+    state_stack.push(<span class="hljs-number">1</span>);
+    state = <span class="hljs-number">4</span>;
+    input_x = increment(input_x);
+}
+</div></code></pre>
+<p>などのような書き方が考えられる。コード生成部は、一般的なコンパイラの出力部分を参考にしながら実装すればよい。</p>
+<h2 id="%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</h2>
+<p><a href="https://speakerdeck.com/yui_knk/lalr-parser-generatornozuo-rifang">LALR parser generatorの作り方</a> 2024年8月25日参照
+<a href="https://www.hpcs.cs.tsukuba.ac.jp/~msato/lecture-note/comp2004/note4.html">プログラミング言語処理</a> 2024年8月25日参照
+<a href="https://ocw.mit.edu/ans7870/6/6.005/s16/classes/18-parser-generators/">Reading 18: Parser Generators</a> 2024年8月25日参照
+<a href="https://www.sciencedirect.com/topics/computer-science/parser-generator">Parser Generator - an overview | ScienceDirect Topics</a> 2024年8月25日参照</p>
+
+</body>
+</html>

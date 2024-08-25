@@ -1,0 +1,34 @@
+// rows starting with double slash is skipped
+
+// 1st section: declare non-terminal symbols and tokens (labels named by lexer)
+// alphabet, number(0-9), under score(_) can be used in name of non-terminal sybmols and tokens
+
+// non-terminal sybmols are declared after "%nset"
+%nset S A
+
+// tokens (non-literal terminal symbols) are declared after "%token" and "0x20" (space)
+// option: token declaration will be implemented later
+// %token token1;
+// %token token2;
+// %token token3;
+
+// end of the section is shown by "%%" (double percent)
+%%
+
+// 2nd section: construction rules (generation rules)
+// the left side of the first rule is start symbol as well as non-terminal symbol
+// there must be at least one space between ":" (colon) and symbol in right side, and between each symbol in right side
+S: A A
+
+// the left side of the second rule or after is non-terminal symbol
+// literals must be enclosed by single quotation, and must be terminal symbol as well as tokens declared above
+A: '<' '>'
+// the right side of vertical line is regarded as right side of latest colon
+// option: vertical line will be implemented later
+// | '<' A '>'
+
+A: '<' A '>'
+
+%%
+// 3rd section: subroutine
+// option: subroutine section will be implemented later
